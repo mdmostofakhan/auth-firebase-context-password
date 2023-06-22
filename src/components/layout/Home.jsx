@@ -3,7 +3,8 @@ import { ThemContext } from '../providers/ThemProviders'
 
 
 const Home = () => {
-   const user = useContext(ThemContext)
+   const { user} = useContext(ThemContext)
+       console.log(user)
     return (
         <div>
             <h3>This is Home {user && <span>{user.displayName}</span>} </h3>
