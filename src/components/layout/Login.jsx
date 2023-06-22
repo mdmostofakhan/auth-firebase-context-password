@@ -4,7 +4,8 @@ import { ThemContext } from '../providers/ThemProviders';
 
 const Login = () => {
  
-   const {signIn} = useContext(ThemContext); 
+   const {signIn, signInGooglePopup} = useContext(ThemContext); 
+
 
     const handleSubmit = event => {
         event.preventDefault()
@@ -17,11 +18,23 @@ const Login = () => {
         .then(result => {
            const loggedUser = result.user
            console.log(loggedUser)
+           form.reset()
         })
         .catch(error => {
           console.log(error)
         })
     }
+
+     const handleGoogleSign = () => {
+        signInGooglePopup()
+         .then(result => {
+           const loggedUser = result.user
+           console.log(loggedUser)
+         })
+         .catch(error => {
+           console.log(error);
+         })
+     }
 
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -56,6 +69,9 @@ const Login = () => {
                    New to Auth Muster? Please Register
                </Link>
               </p>
+              <div>
+                  <button onClick={handleGoogleSign} className="btn btn-warning">Google</button>
+              </div>
           </div>
         </div>
       </div>
